@@ -1,0 +1,3 @@
+graft ccm/templates
+graft ccm/static
+global-exclude *.pyc
