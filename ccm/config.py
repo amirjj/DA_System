@@ -10,7 +10,7 @@ class DefaultConfig(object):
 	TESTING = False
 	DB_SERVER = "127.0.0.1"
 	SECRET_KEY = "dev"
-	
+	CSRF_ENABLED = True
 	# @property
 	# def DATABASE_URI(self):
 	# 	return 'mysql://user@{}/foo'.format(self.DB_SERVER)
