@@ -12,6 +12,7 @@ class DefaultConfig(object):
 	SECRET_KEY = "dev"
 	CSRF_ENABLED = True
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
+	
 	# @property
 	# def DATABASE_URI(self):
 	# 	return 'mysql://user@{}/foo'.format(self.DB_SERVER)
