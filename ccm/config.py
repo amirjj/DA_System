@@ -7,7 +7,10 @@ class DefaultConfig(object):
 	"""DefaultConfig includes common configurations for flask app.
 	Other config objects inheret these common properties from it.
 	"""
+	DEBUG = False
+	TESTING = False
 	DB_SERVER = "127.0.0.1"
+	SECRET_KEY = "dev"
 	
 	# @property
 	# def DATABASE_URI(self):
@@ -18,12 +21,13 @@ class ProductionConfig(DefaultConfig):
 	pass
 
 class DevelopmentConfig(DefaultConfig):
-	pass
+	DEBUG = True
+	
 
 class TestingConfig(DefaultConfig):
-	pass
+	DEBUG = True
+	
 
 
-		
 		
 		
