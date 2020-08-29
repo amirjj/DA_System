@@ -1,4 +1,4 @@
-from extentions import db
+from ccm.extentions import db
 
 class User(db.Model):
 	__tablename__ = "ccm_user"

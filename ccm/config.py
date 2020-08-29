@@ -1,7 +1,5 @@
 
 
-
-
 class DefaultConfig(object):
 	"""DefaultConfig includes common configurations for flask app.
 	Other config objects inheret these common properties from it.
@@ -12,6 +10,7 @@ class DefaultConfig(object):
 	SECRET_KEY = "dev"
 	CSRF_ENABLED = True
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
+	EXTENTIONS = ['db']
 	
 	# @property
 	# def DATABASE_URI(self):
