@@ -1,10 +1,10 @@
-from app import db
+from extentions import db
 
 class User(db.Model):
 	__tablename__ = "User"
-	id = db.column(db.Integer, primary_key=True)
-	name = db.column(db.String)
-	last_name = db.column(db.String)
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String)
+	last_name = db.Column(db.String)
 
 	def __init__(self, name, last_name):
 		self.name = name
