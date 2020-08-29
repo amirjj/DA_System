@@ -20,6 +20,8 @@ class ProductionConfig(DefaultConfig):
 	pass
 
 class DevelopmentConfig(DefaultConfig):
+	DEVELOPMENT = True
+	TESTING = True
 	DEBUG = True
 	
 
