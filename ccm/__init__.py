@@ -2,6 +2,7 @@ import os
 from ccm.models.auth import User
 
 
+
 def configure_app(app, test_config):
 	from ccm.config import DevelopmentConfig
 	app.config.from_object(DevelopmentConfig)
@@ -12,18 +13,24 @@ def configure_app(app, test_config):
 
 def configure_extentions(app):
 	from ccm.extentions import db
-	import ccm.extentions as ex
+	from ccm import extentions as ex
 
 	for extention in app.config['EXTENTIONS']:
 		getattr(ex, extention).init_app(app)
 
+def configure_blueprints(app):
+	from ccm.blueprints.portal import dashboard
+	for bp in app.config['BLUEPRINTS']:
+		bp_obj = getattr(dashboard, bp)
+		app.register_blueprint(bp_obj)
+		
 
 def create_app(test_config=None):
 	from flask import Flask
 	app = Flask(__name__)
 	configure_app(app, test_config)
 	configure_extentions(app)
-	#configure_blueprints
+	configure_blueprints(app)
 	#configure_directories
 	#configure_sentry
 
