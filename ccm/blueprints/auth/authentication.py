@@ -1,7 +1,8 @@
 from flask import Blueprint, request, g, render_template, abort, flash, redirect, url_for
 from jinja2 import TemplateNotFound
 from flask_login import login_user, logout_user
-from ccm.extentions import login_manager
+from werkzeug.security import generate_password_hash, check_password_hash
+from ccm.extentions import login_manager, db
 from ccm.models.auth import User
 
 auth_bp = Blueprint('auth.authentication', __name__, template_folder="templates", url_prefix="/auth")
@@ -10,11 +11,31 @@ auth_bp = Blueprint('auth.authentication', __name__, template_folder="templates"
 def user_loader(user_id):
 	return User.get(user_id)
 
-@auth_bp.route("/register")
+@auth_bp.route("/register", methods=('GET','POST'))
 def register():
-	return "registeration"
+	if request.method == 'POST':
+		username = request.form.get('username')
+		email = request.form.get('email')
+		password = request.form.get('password')
+		accpass = request.form.get('accpass')
+		print(email)
+		print(type(email))
+		user = User.query.filter_by(email = email).first()
+		if user:
+			flash('Username already exists', 'error')
+			return redirect(url_for('auth.authentication.register'))
+		#Check if password and accpass are different
+		new_user = User(email=email, name=username, password=\
+			generate_password_hash(password,method='sha256'))
 
-@auth_bp.route("/login", methods=['GET','POST'])
+		db.session.add(new_user)
+		db.session.commit()
+
+		return redirect(url_for('portal.dashboard.index'))
+
+	return render_template("signup.html")
+
+@auth_bp.route("/login", methods=('GET','POST'))
 def login():
 	form = LoginForm()
 	if form.validate_on_submit():

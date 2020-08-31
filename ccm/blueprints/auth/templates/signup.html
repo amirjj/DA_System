@@ -1,20 +1,13 @@
 <!doctype html>
-<!-- 
-* Bootstrap Simple Admin Template
-* Version: 1.2
-* Author: Alexis Luna
-* Copyright 2020 Alexis Luna
-* Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
--->
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sign up | Start Bootstrap</title>
+    <title>Sign up</title>
 
-    <link href="assets/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/auth.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='assets/vendor/bootstrap4/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='assets/css/auth.css')}}" rel="stylesheet">
     
 </head>
 <body>
@@ -23,22 +16,30 @@
             <div class="card">
                 <div class="card-body text-center">
                     <div class="mb-4">
-                        <img class="brand" src="assets/img/bootstraper-logo.png" alt="bootstraper logo">
+                        <a> CCM - MTNIrancell </a>
                     </div>
                     <h6 class="mb-4 text-muted">Create a new account</h6>
-                   
-                    <form action="" method="">
+                    {% with messages = get_flashed_messages(with_categories=True) %}
+                        {% if messages %}
+                            <ul class=flashes>
+                                {% for category ,message in messages %}
+                                    <li class="{{ category }}"> {{ message }} </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+                    <form action="" method="post">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Username" required>
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email" required>
+                            <input type="email" class="form-control" name="email" placeholder="Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password" required>
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Confirm password" required>
+                            <input type="password" class="form-control" name="accpass" placeholder="Confirm password" required>
                         </div>
                         <button class="btn btn-primary shadow-2 mb-4">Register</button>
                     </form>
@@ -48,8 +49,8 @@
         </div>
     </div>
     
-    <script src="assets/vendor/jquery3/jquery.min.js"></script>
-    <script src="assets/vendor/bootstrap4/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/jquery3/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/bootstrap4/js/bootstrap.min.js') }}"></script>
 
 </body>
 </html>
