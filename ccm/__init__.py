@@ -20,9 +20,17 @@ def configure_extentions(app):
 
 def configure_blueprints(app):
 	from ccm.blueprints.portal import dashboard
-	for bp in app.config['BLUEPRINTS']:
-		bp_obj = getattr(dashboard, bp)
-		app.register_blueprint(bp_obj)
+	from ccm.blueprints.auth import authentication
+
+	for package in app.config['BLUEPRINTS']:
+		if 'authentication' in package:
+			bp = getattr(authentication, app.config['BLUEPRINTS']['authentication'])
+			app.register_blueprint(bp)
+		elif 'dashboard' in package:
+			bp = getattr(dashboard, app.config['BLUEPRINTS']['dashboard'])
+			app.register_blueprint(bp)
+		
+
 		
 
 def create_app(test_config=None):
