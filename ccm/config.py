@@ -10,7 +10,7 @@ class DefaultConfig(object):
 	SECRET_KEY = "dev"
 	CSRF_ENABLED = True
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
-	EXTENTIONS = ['db']
+	EXTENTIONS = ['db','login_manager']
 	BLUEPRINTS = [
 		('ccm.blueprints.auth.authentication','auth_bp'),
 		('ccm.blueprints.portal.dashboard','dash_bp')
