@@ -11,10 +11,10 @@ class DefaultConfig(object):
 	CSRF_ENABLED = True
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 	EXTENTIONS = ['db']
-	BLUEPRINTS = {
-		'authentication' : 'auth_bp',
-		'dashboard' : 'dash_bp'
-	}
+	BLUEPRINTS = [
+		('ccm.blueprints.auth.authentication','auth_bp'),
+		('ccm.blueprints.portal.dashboard','dash_bp')
+	]
 	# @property
 	# def DATABASE_URI(self):
 	# 	return 'mysql://user@{}/foo'.format(self.DB_SERVER)

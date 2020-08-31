@@ -19,22 +19,21 @@ def configure_extentions(app):
 		getattr(ex, extention).init_app(app)
 
 def configure_blueprints(app):
-	from ccm.blueprints.portal import dashboard
-	from ccm.blueprints.auth import authentication
+	from importlib import import_module
 
 	for package in app.config['BLUEPRINTS']:
-		if 'authentication' in package:
-			bp = getattr(authentication, app.config['BLUEPRINTS']['authentication'])
-			app.register_blueprint(bp)
-		elif 'dashboard' in package:
-			bp = getattr(dashboard, app.config['BLUEPRINTS']['dashboard'])
-			app.register_blueprint(bp)
-		
+		module_name = package[0]
+		object_name = package[1]
 
-		
+		module_obj = import_module(module_name)
+		bp = getattr(module_obj, object_name)
+		app.register_blueprint(bp)
+	return app
+
 
 def create_app(test_config=None):
 	from flask import Flask
+
 	app = Flask(__name__)
 	configure_app(app, test_config)
 	configure_extentions(app)
