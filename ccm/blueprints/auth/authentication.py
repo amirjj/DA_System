@@ -18,11 +18,15 @@ def register():
 		email = request.form.get('email')
 		password = request.form.get('password')
 		accpass = request.form.get('accpass')
-		print(email)
-		print(type(email))
+		error = None
 		user = User.query.filter_by(email = email).first()
 		if user:
-			flash('Username already exists', 'error')
+			error = 'Username already exists'
+		if password != accpass:
+			error = 'Passwords don\'t match'
+
+		if error:
+			flash(error)
 			return redirect(url_for('auth.authentication.register'))
 		#Check if password and accpass are different
 		new_user = User(email=email, name=username, password=\
