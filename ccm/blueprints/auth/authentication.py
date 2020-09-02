@@ -28,14 +28,14 @@ def register():
 		if error:
 			flash(error)
 			return redirect(url_for('auth.authentication.register'))
-		#Check if password and accpass are different
+		
 		new_user = User(email=email, name=username, password=\
 			generate_password_hash(password,method='sha256'))
 
 		db.session.add(new_user)
 		db.session.commit()
 
-		return redirect(url_for('portal.dashboard.index'))
+		return redirect(url_for('auth.authentication.login'))
 
 	return render_template("signup.html")
 
@@ -65,7 +65,7 @@ def login():
 @login_required
 def logout():
 	logout_user()
-	redirect(url_for('auth.authentication.login'))
+	return redirect(url_for('auth.authentication.login'))
 
 
 # @auth_bp.route("/login", methods=('GET','POST'))
