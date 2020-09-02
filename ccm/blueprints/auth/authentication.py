@@ -39,20 +39,39 @@ def register():
 
 	return render_template("signup.html")
 
-@auth_bp.route("/login", methods=('GET','POST'))
-def login():
-	form = LoginForm()
-	if form.validate_on_submit():
-		login_user(user)
-		flash("Logged in successfully")
-		next = request.args.get('next')
-		if not is_safe_url(next):
-			abort(400)
-		return redirect(next or url_for(auth_bp.index))
-	return render_template("login.html", form=form)
 
-@auth_bp.route("/logout")
-def logout():
-	logout_user()
-	return redirect(url_for('login'))
+@auth_bp.route("/login", methods=('POST', 'GET'))
+def login():
+	return render_template('login.html')
+	# email = request.form.get('email')
+	# password = request.form.get('password')
+	# remember = True if request.form.get('remember') else False
+
+	# user = User.query.filter_by(email='email').first()
+
+	# if not user or not check_password_hash(user.password, password):
+	# 	flash("User does'n exist or wrong password")
+	# 	return redirect(url_for('auth_bp.login'))
+
+	# return redirect(url_for('portal.dashboard.index'))
+
+
+
+
+# @auth_bp.route("/login", methods=('GET','POST'))
+# def login():
+# 	form = LoginForm()
+# 	if form.validate_on_submit():
+# 		login_user(user)
+# 		flash("Logged in successfully")
+# 		next = request.args.get('next')
+# 		if not is_safe_url(next):
+# 			abort(400)
+# 		return redirect(next or url_for(auth_bp.index))
+# 	return render_template("login.html", form=form)
+
+# @auth_bp.route("/logout")
+# def logout():
+# 	logout_user()
+# 	return redirect(url_for('login'))
 
