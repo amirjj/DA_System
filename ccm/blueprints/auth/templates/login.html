@@ -47,7 +47,7 @@
                         <button class="btn btn-primary shadow-2 mb-4">Login</button>
                     </form>
                     <p class="mb-2 text-muted">Forgot password? <a href="forgot-password.html">Reset</a></p>
-                    <p class="mb-0 text-muted">Don’t have an account? <a href="signup.html">Signup</a></p>
+                    <p class="mb-0 text-muted">Don’t have an account? <a href="{{ url_for('auth.authentication.register') }}">Signup</a></p>
                 </div>
             </div>
         </div>
