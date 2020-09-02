@@ -16,6 +16,7 @@ class DefaultConfig(object):
 		('ccm.blueprints.portal.dashboard','dash_bp')
 	]
 	login_manager.login_view = 'auth.authentication.login'
+	USE_SESSION_FOR_NEXT = True
 
 	# @property
 	# def DATABASE_URI(self):
