@@ -42,18 +42,24 @@ def register():
 
 @auth_bp.route("/login", methods=('POST', 'GET'))
 def login():
-	return render_template('login.html')
-	# email = request.form.get('email')
-	# password = request.form.get('password')
-	# remember = True if request.form.get('remember') else False
+	if request.method == 'POST':
+		email = request.form.get('email')
+		password = request.form.get('password')
+		remember = True if request.form.get('remember') else False
 
-	# user = User.query.filter_by(email='email').first()
+		user = User.query.filter_by(email=email).first()
 
-	# if not user or not check_password_hash(user.password, password):
-	# 	flash("User does'n exist or wrong password")
-	# 	return redirect(url_for('auth_bp.login'))
+		if not user:
+			flash('Not such user')
+			return redirect(url_for('auth.authentication.login'))
+		if not check_password_hash(user.password, password):
+			flash("Wrong password")
+			return redirect(url_for('auth.authentication.login'))
 
-	# return redirect(url_for('portal.dashboard.index'))
+		return redirect(url_for('portal.dashboard.index'))
+	else:
+		return render_template('login.html')
+
 
 
 
