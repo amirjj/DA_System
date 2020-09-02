@@ -1,4 +1,4 @@
-
+from ccm.extentions import login_manager
 
 class DefaultConfig(object):
 	"""DefaultConfig includes common configurations for flask app.
@@ -15,6 +15,8 @@ class DefaultConfig(object):
 		('ccm.blueprints.auth.authentication','auth_bp'),
 		('ccm.blueprints.portal.dashboard','dash_bp')
 	]
+	login_manager.login_view = 'auth.authentication.login'
+
 	# @property
 	# def DATABASE_URI(self):
 	# 	return 'mysql://user@{}/foo'.format(self.DB_SERVER)

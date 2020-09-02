@@ -1,6 +1,6 @@
 from flask import Blueprint, request, g, render_template, abort, flash, redirect, url_for
 from jinja2 import TemplateNotFound
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from ccm.extentions import login_manager, db
 from ccm.models.auth import User
@@ -9,7 +9,7 @@ auth_bp = Blueprint('auth.authentication', __name__, template_folder="templates"
 
 @login_manager.user_loader
 def user_loader(user_id):
-	return User.get(user_id)
+	return User.query.get(int(user_id))
 
 @auth_bp.route("/register", methods=('GET','POST'))
 def register():
@@ -55,13 +55,17 @@ def login():
 		if not check_password_hash(user.password, password):
 			flash("Wrong password")
 			return redirect(url_for('auth.authentication.login'))
-
+		login_user(user, remember=remember)
 		return redirect(url_for('portal.dashboard.index'))
 	else:
 		return render_template('login.html')
 
 
-
+@auth_bp.route('/logout')
+@login_required
+def logout():
+	logout_user()
+	redirect(url_for('auth.authentication.login'))
 
 
 # @auth_bp.route("/login", methods=('GET','POST'))
