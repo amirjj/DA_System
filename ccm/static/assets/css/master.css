@@ -379,6 +379,10 @@ table.dataTable>tbody>tr.child ul.dtr-details {
     color: #767676 !important;
 }
 
+.red {
+    color: #ea3333 !important;
+}
+
 /*------------------------------------------------------------------
 [11. Responsive properties] 
 */
