@@ -9,6 +9,9 @@
 
     <link href="{{ url_for('static', filename='assets/vendor/bootstrap4/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='assets/css/master.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='assets/vendor/chartsjs/Chart.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='assets/vendor/flagiconcss3/css/flag-icon.min.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
@@ -19,7 +22,7 @@
             </div>
             <ul class="list-unstyled components text-secondary">
                 <li>
-                    <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                    <a href="{{ url_for('portal.dashboard.index') }}"><i class="fas fa-home"></i> Dashboard</a>
                 </li>
                 <li>
                     <a href="forms.html"><i class="fas fa-file-alt"></i> Forms</a>
@@ -138,7 +141,10 @@
     <script src="{{ url_for('static', filename='assets/vendor/bootstrap4/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='assets/vendor/fontawesome5/js/solid.min.js') }}"></script>
     <script src="{{ url_for('static', filename='assets/vendor/fontawesome5/js/fontawesome.min.js') }}"></script>
-    <script src="{{url_for('static',filename='assets/js/script.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/js/script.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/chartsjs/Chart.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/dashboard-charts.js') }}"></script>
+    
 
 </body>
 

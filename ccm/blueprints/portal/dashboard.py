@@ -7,5 +7,5 @@ dash_bp = Blueprint("portal.dashboard", __name__, template_folder="templates")
 @dash_bp.route("/")
 @login_required
 def index():
-	return render_template("base.html", title='CCM')
+	return render_template("index.html", title='CCM')
 
