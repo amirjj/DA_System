@@ -3,6 +3,42 @@ var usn_location_check = document.getElementById("usn_location_check");
 var control_status_radar_this_month = document.getElementById("control_status_radar_this_month");
 var control_status_radar_past_two_months = document.getElementById("control_status_radar_past_two_months");
 var cow_per_dealer = document.getElementById("cow_per_dealer");
+var registration_per_dealer = document.getElementById("registration_per_dealer")
+
+var registration_per_dealer_chart = new Chart(registration_per_dealer, {
+    type: 'bar',
+    data:{
+        labels: ['Ali','amir','hasan',
+            'asghar','Ali','basir',
+            'kabir'],
+        datasets: [{
+            backgroundColor: "rgb(248, 16, 16)",
+            borderColor: "rgba(48, 164, 255, 0.8)",
+            borderSkipped: 'top',
+            borderWidth: 0,
+            data: [10, 20, 30, 40, 50, 60, 70],
+            barPercentage: 0.5,
+            barThickness: 4,
+            maxBarThickness: 8,
+            minBarLength: 2,
+            hoverBackgroundColor: "rgba(48, 164, 255, 0.5)",
+            hoverBorderColor: "rgba(48, 164, 255, 0.5)",
+            
+            hoverBorderWidth: 20,
+            label: '',
+            //order:
+            //xAxisID:
+            //yAxisID:
+        }]
+    },
+    options: {
+        responsive: true,
+        title: {display: false,text: 'Chart'},
+        legend: {position: 'top',display: false,},
+        tooltips: {mode: 'index',intersect: false, enabled: true,},
+        hover: {mode: 'nearest',intersect: true},
+    },
+});
 
 var cow_per_dealer_chart = new Chart(cow_per_dealer, {
     type: 'bar',
