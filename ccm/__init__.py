@@ -1,7 +1,5 @@
 import os
 
-
-
 def configure_app(app, test_config):
 	from ccm.config import DevelopmentConfig
 	if test_config is not None:

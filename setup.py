@@ -7,7 +7,7 @@ setup(
 	packages=find_packages(),
 	include_package_data=True,
 	zip_file=False,
-	install_required=[
+	install_requires=[
 		'flask',
 	],
 )

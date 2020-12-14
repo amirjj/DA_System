@@ -1,3 +1,8 @@
 graft ccm/templates
 graft ccm/static
+recursive-include ccm/templates *
+recursive-include ccm/static *
+recursive-include ccm/blueprints/auth/templates *
+recursive-include ccm/blueprints/portal/templates *
+recursive-include ccm/static *
 global-exclude *.pyc
