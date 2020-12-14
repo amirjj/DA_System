@@ -1,7 +1,7 @@
 import os
 
 def configure_app(app, test_config):
-	from ccm.config import DevelopmentConfig
+	from .config import DevelopmentConfig
 	if test_config is not None:
 		app.config.from_object(test_config)
 	app.config.from_object(DevelopmentConfig)
@@ -10,12 +10,12 @@ def configure_app(app, test_config):
 
 def configure_extentions(app):
 	from flask_migrate import Migrate, MigrateCommand
-	from ccm.extentions import db
+	from .extentions import db
 	
 	# migrate initiated seperately as it need two parameters 
 	# (in future if needed, it will be add to extentions.py)
 	migrate = Migrate(app, db)
-	from ccm import extentions as ex
+	from . import extentions as ex
 
 	for extention in app.config['EXTENTIONS']:
 		getattr(ex, extention).init_app(app)

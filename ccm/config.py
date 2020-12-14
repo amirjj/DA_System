@@ -1,4 +1,4 @@
-from ccm.extentions import login_manager
+from .extentions import login_manager
 
 class DefaultConfig(object):
 	"""DefaultConfig includes common configurations for flask app.
