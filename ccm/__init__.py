@@ -1,4 +1,3 @@
-import os
 
 def configure_app(app, test_config):
 	from .config import DevelopmentConfig
