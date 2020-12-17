@@ -3,7 +3,7 @@ from jinja2 import TemplateNotFound
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from ccm.extentions import login_manager, db
-from ccm.models.auth import User
+from ccm.models import User
 
 auth_bp = Blueprint('auth.authentication', __name__, template_folder="templates", url_prefix="/auth")
 
